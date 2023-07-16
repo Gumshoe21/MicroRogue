@@ -31,15 +31,32 @@ export default class Character {
 
 
     constructor(map, enemies) {
-
-    }
+			// The sprite number number in our sprite sheet that represents the character.
+			this.spriteNumber = 4;
+			// (x,y) pixel position and tile position
+			// the sprites are 8x8 px
+			// the initial position for the character is at 16x16, which is at row 2, col 2 - we divide by 8 to get the row/col
+			this.x = 16;
+			this.y = 16;
+			this.row = this.y / 8;
+			this.col = this.x / 8;
+			// when the character moves, they move by 8 pixels
+			this.moveAmount = 8;
+			//
+			this.map = map;
+			// the sprites that are things you cannot move through
+			this.boundarySprites = [144, 145, 147, 148, 150, 153, 39, 40];
+			// the list of the enemies
+			this.enemies = enemies;
+		}
 
     /**
      * Updates the sprite to the correct location and locks the movement for "maxCounter" frames.
      */
     update() {
-
-    }
+			// draw the character
+			this.draw();
+		}
 
 
     /**
@@ -48,8 +65,26 @@ export default class Character {
      * @returns {Boolean} True if the player has moved or attacked, false otherwise.
      */
     move(direction) {
-
-    }
+			// getTile() looks in the partciular direction you want to move and gives back a tile object if you can move there or null if there is no tile there.
+			let chosen = this.getTile(direction);
+			// move() determined if we moved or not, that's why we have true or false here... if null, no move, if tile, moved
+			if (chosen == null) {
+				return false;
+			}
+			// check if tile you're trying to move to is actually a boundary
+			if (this.boundaryCheck(chosen) == true) {
+				return false;
+			}
+			// Update the (row,col) and (x,y) pixel and tile information (i.e. update the position);
+			this.row = chosen.y; // the chosen position's y is the row
+			this.col = chosen.x;
+			this.x = this.col * 8; // these convert back between pixel and row
+			this.y = this.row * 8;
+			// get the tile from the map using column and row
+			this.tile = this.map.get(this.col, this.row);
+			// if we moved then we return true so we know we moved and any enemies can move if they need to also
+			return true;
+		}
 
     /**
      * Performs attack action against enemy.
@@ -136,7 +171,8 @@ export default class Character {
      * Draws the sprite in the correct x and y location.
      */
     draw() {
-        sprite(this.spriteNumber, this.x, this.y)
-    }
+			// draw sprite on screen using sprite number and x/y pos
+			sprite(this.spriteNumber, this.x, this.y);
+		}
 
 }
