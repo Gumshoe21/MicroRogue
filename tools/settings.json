@@ -8,18 +8,22 @@
 	},
 	"state": {
 		"globals": {
-			"zoom": 1
+			"zoom": {
+				"map": 4.424999999999998,
+				"sheet": 4.424999999999998,
+				"link": true
+			}
 		},
 		"mapEditor": {
 			"x": 160,
 			"y": 20,
 			"open": true,
-			"width": 744,
+			"width": 712,
 			"height": 760,
 			"layers": [
 				{
 					"type": "map",
-					"id": "assets\\maps.json:map"
+					"id": "assets/maps.json:map"
 				}
 			]
 		},
@@ -32,7 +36,7 @@
 		},
 		"tilesheet": {
 			"x": 960,
-			"y": 100,
+			"y": 68,
 			"open": true
 		},
 		"tileBrush": {
@@ -72,6 +76,7 @@
 			"width": 456,
 			"height": 152
 		},
+		"slices": {},
 		"settings": {
 			"x": 80,
 			"y": 53,

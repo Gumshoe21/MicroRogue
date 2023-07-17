@@ -1,32 +1,3 @@
-/*
-Copyright (c) 2020, Micah Schuster
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
-
-/**
- * Class Enemy. Contains the properties and methods for enemy AI.
- */
 export default class Enemy {
 	constructor(row, col, player, map) {
 		this.spriteNumber = 20;
@@ -39,14 +10,12 @@ export default class Enemy {
 		this.boundarySprites = [144, 145, 147, 148, 150, 153, 39, 40];
 		this.tile = this.map.get(this.col, this.row);
 	}
-
 	/**
 	 * Method to move and draw the enemy object.
 	 */
 	update() {
 		this.move();
 	}
-
 	/**
 	 * Decides if the enemy will move or attack, based on relative position between enemy and player.
 	 * Updates the appropriate enemy fields.
@@ -71,14 +40,11 @@ export default class Enemy {
 			this.tile = this.map.get(this.col, this.row);
 		}
 	}
-
 	/**
 	 * Performs attack.
 	 */
 	attack() {}
-
 	//utility functions
-
 	/**
 	 * Examines all tiles around the enemy and determines which is closest to the player.
 	 * @returns {Tile} Tile that the enemy will attempt to move to.
@@ -108,7 +74,6 @@ export default class Enemy {
 	draw() {
 		sprite(this.spriteNumber, this.x, this.y);
 	}
-
 	/**
 	 * Computes euclidean distance between two tiles.
 	 * @param {Tile} tile1 First tile.
@@ -118,7 +83,6 @@ export default class Enemy {
 	computeDistance(tile1, tile2) {
 		return Math.sqrt((tile1.x - tile2.x) * (tile1.x - tile2.x) + (tile1.y - tile2.y) * (tile1.y - tile2.y));
 	}
-
 	/**
 	 * Compares two tiles to determine if they have the same x and y coordinate.
 	 * @param {Tile} tile1 First tile to compare.
@@ -134,7 +98,6 @@ export default class Enemy {
 		}
 		return false;
 	}
-
 	/**
 	 * Detmines which of the two input tiles are closest to the player.
 	 * @param {Tile} tile1 First tile to consider.
